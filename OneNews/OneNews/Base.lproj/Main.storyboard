@@ -54,21 +54,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="50"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HackerNewsCellIdentifier" rowHeight="60" id="uag-yq-pNi" customClass="HackerNewsCell" customModule="OneNews" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HackerNewsCellIdentifier" id="uag-yq-pNi" customClass="HackerNewsCell" customModule="OneNews" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uag-yq-pNi" id="JZh-pY-eKX">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="500" placeholderIntrinsicHeight="20.5" text="This is a post title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="500" translatesAutoresizingMaskIntoConstraints="NO" id="up0-V7-joF" userLabel="Title">
-                                            <rect key="frame" x="50" y="10" width="500" height="20.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="This is a post title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="500" translatesAutoresizingMaskIntoConstraints="NO" id="up0-V7-joF" userLabel="Title">
+                                            <rect key="frame" x="50" y="10" width="500" height="18"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <accessibility key="accessibilityConfiguration" label="Title Label"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="41.5" placeholderIntrinsicHeight="13" text="author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BdM-v3-wOx" userLabel="Author">
-                                            <rect key="frame" x="50" y="37" width="500" height="13"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BdM-v3-wOx" userLabel="Author">
+                                            <rect key="frame" x="50" y="32.5" width="500" height="17"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <accessibility key="accessibilityConfiguration" label="Author Label"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -116,7 +116,7 @@
                                         <constraint firstAttribute="trailing" secondItem="up0-V7-joF" secondAttribute="trailing" constant="50" id="68C-z8-oro"/>
                                         <constraint firstAttribute="centerY" secondItem="uuL-Af-TGF" secondAttribute="centerY" constant="8" id="MaH-60-HCP"/>
                                         <constraint firstItem="up0-V7-joF" firstAttribute="leading" secondItem="JZh-pY-eKX" secondAttribute="leading" constant="50" id="QUI-Hd-1mM"/>
-                                        <constraint firstItem="BdM-v3-wOx" firstAttribute="top" relation="greaterThanOrEqual" secondItem="up0-V7-joF" secondAttribute="bottom" constant="5" id="Rn6-UG-96g"/>
+                                        <constraint firstItem="BdM-v3-wOx" firstAttribute="top" secondItem="up0-V7-joF" secondAttribute="bottom" constant="5" id="Rn6-UG-96g"/>
                                         <constraint firstAttribute="bottom" secondItem="BdM-v3-wOx" secondAttribute="bottom" constant="10" id="Rvl-oO-nYs"/>
                                         <constraint firstAttribute="trailing" secondItem="BdM-v3-wOx" secondAttribute="trailing" constant="50" id="UOQ-p6-phc"/>
                                         <constraint firstAttribute="trailing" secondItem="uuL-Af-TGF" secondAttribute="trailing" constant="8" id="XbD-oY-POW"/>
@@ -133,8 +133,6 @@
                                     <outlet property="commentsLabel" destination="Ue4-x5-tlE" id="kR7-T6-RTy"/>
                                     <outlet property="pointsLabel" destination="vGe-0k-IeI" id="NrH-4h-uqf"/>
                                     <outlet property="titleLabel" destination="up0-V7-joF" id="S0K-54-IgI"/>
-                                    <outlet property="titleLabelLeading" destination="QUI-Hd-1mM" id="VNm-EE-EWe"/>
-                                    <outlet property="titleLabelTrailing" destination="68C-z8-oro" id="kRb-RQ-q34"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -159,19 +157,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentsCellIdentifier" textLabel="qP6-jx-vob" style="IBUITableViewCellStyleDefault" id="H1P-sh-8z5">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentsCellIdentifier" id="H1P-sh-8z5" customClass="CommentCell" customModule="OneNews" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="H1P-sh-8z5" id="szO-yM-GFC">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qP6-jx-vob">
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="580" translatesAutoresizingMaskIntoConstraints="NO" id="e8r-fJ-cLA" userLabel="Comment">
+                                            <rect key="frame" x="10" y="10" width="580" height="23.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="e8r-fJ-cLA" secondAttribute="bottom" constant="10" id="Ohw-AE-96N"/>
+                                        <constraint firstItem="e8r-fJ-cLA" firstAttribute="top" secondItem="szO-yM-GFC" secondAttribute="top" constant="10" id="mZ2-8c-x7W"/>
+                                        <constraint firstItem="e8r-fJ-cLA" firstAttribute="leading" secondItem="szO-yM-GFC" secondAttribute="leading" constant="10" id="ncV-KV-GTj"/>
+                                        <constraint firstAttribute="trailing" secondItem="e8r-fJ-cLA" secondAttribute="trailing" constant="10" id="olV-Zv-nBl"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="commentLabel" destination="e8r-fJ-cLA" id="sz9-eQ-gCx"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

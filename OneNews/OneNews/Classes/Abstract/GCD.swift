@@ -15,5 +15,5 @@ func dispatch_main(block: BlankClosure) {
 }
 
 func dispatch_background(block: BlankClosure) {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), block)
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), block)
 }

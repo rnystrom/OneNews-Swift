@@ -23,6 +23,7 @@
 		29F8561D1996E789008CF51A /* JSONRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F8561C1996E789008CF51A /* JSONRequest.swift */; };
 		29F8561F1996E7C2008CF51A /* HackerNewsServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F8561E1996E7C2008CF51A /* HackerNewsServices.swift */; };
 		29F856211996E8FD008CF51A /* HackerNewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F856201996E8FD008CF51A /* HackerNewsController.swift */; };
+		29FACBC3199AB4BB0065B1C9 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FACBC2199AB4BB0065B1C9 /* CommentCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		29F8561C1996E789008CF51A /* JSONRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONRequest.swift; path = OneNews/Classes/Abstract/JSONRequest.swift; sourceTree = "<group>"; };
 		29F8561E1996E7C2008CF51A /* HackerNewsServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HackerNewsServices.swift; path = OneNews/Classes/Services/HackerNewsServices.swift; sourceTree = "<group>"; };
 		29F856201996E8FD008CF51A /* HackerNewsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HackerNewsController.swift; path = "OneNews/Classes/View Controllers/HackerNewsController.swift"; sourceTree = "<group>"; };
+		29FACBC2199AB4BB0065B1C9 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentCell.swift; path = "OneNews/Classes/Reusable Views/CommentCell.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				29B9AF4B199827C1006928F8 /* HackerNewsCell.swift */,
+				29FACBC2199AB4BB0065B1C9 /* CommentCell.swift */,
 			);
 			name = "Reusable Views";
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29FACBC3199AB4BB0065B1C9 /* CommentCell.swift in Sources */,
 				29B6D4461996CABE00A09D6F /* DataStore.swift in Sources */,
 				29B6D4441996BC4100A09D6F /* GCD.swift in Sources */,
 				29B9AF4C199827C1006928F8 /* HackerNewsCell.swift in Sources */,

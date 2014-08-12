@@ -31,11 +31,17 @@ class HackerNewsController: UITableViewController {
         tabBarController.title = "Hacker News"
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        tableView.reloadData()
+    }
+    
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator!) {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
         
         // required to re-layout cells
-//        tableView.reloadData()
+        tableView.reloadData()
         
 //        coordinator.animateAlongsideTransition(nil, completion: { context in
 //            self.tableView.reloadData()

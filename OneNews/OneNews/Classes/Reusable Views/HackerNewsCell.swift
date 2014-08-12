@@ -14,17 +14,15 @@ class HackerNewsCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var commentButton: UIButton!
-    @IBOutlet weak var titleLabelLeading: NSLayoutConstraint!
-    @IBOutlet weak var titleLabelTrailing: NSLayoutConstraint!
     @IBOutlet weak var commentsLabel: UILabel!
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        let width = contentView.frame.size.width - titleLabelLeading.constant - titleLabelTrailing.constant
+        titleLabel.preferredMaxLayoutWidth = CGRectGetWidth(titleLabel.frame)
+        authorLabel.preferredMaxLayoutWidth = CGRectGetWidth(authorLabel.frame)
         
-        titleLabel.preferredMaxLayoutWidth = width
-        authorLabel.preferredMaxLayoutWidth = width
+        super.layoutSubviews()
     }
     
 }
