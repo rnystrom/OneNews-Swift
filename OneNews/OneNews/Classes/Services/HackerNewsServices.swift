@@ -22,13 +22,7 @@ struct HackerNewsClient {
             var items = [Post]()
             
             if let jsonItems = json?.array {
-                for obj in jsonItems {
-                    if let tuple = Post.decodeHackerNews(obj){
-                        if let post = tuple.post {
-                            items.append(post)
-                        }
-                    }
-                }
+                items = jsonItems.map { decodeHackerNews($0, 0).post }
             }
             
             callback(items, nil)

@@ -11,8 +11,6 @@ import UIKit
 let CommentsCellIdentifier = "CommentsCellIdentifier"
 
 class CommentsController: UITableViewController {
-    
-    typealias PostTiers = (post: Post, tier: Int, renderedText: NSAttributedString?)
 
     var item: Post? {
         didSet {
@@ -20,12 +18,12 @@ class CommentsController: UITableViewController {
         }
     }
     
-    var flattenedItems: [PostTiers]?
+    var flattenedItems: [Post]?
     
     func flattenAllItems() {
         if let post = item {
             dispatch_background {
-                let children = self.flattenChildren(post, tier: 0)
+                let children = self.flattenChildren(post)
                 
                 dispatch_main {
                     self.flattenedItems = children
@@ -35,18 +33,14 @@ class CommentsController: UITableViewController {
         }
     }
     
-    func flattenChildren(post: Post, tier: Int) -> [PostTiers] {
+    func flattenChildren(post: Post) -> [Post] {
         var html: NSAttributedString? = nil
         
-        var posts = [(post, tier, html)] as [PostTiers]
-        
-        if let comments = post.comments {
-            let deeper = tier + 1
+        var posts = [post]
 
-            for comment in comments {
-                let tuple = flattenChildren(comment, tier: deeper)
-                posts += tuple
-            }
+        for comment in post.comments {
+            let comments = flattenChildren(comment)
+            posts += comments
         }
         
         return posts
@@ -75,8 +69,8 @@ class CommentsController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-        if let post = item {
-            return post.totalComments
+        if let posts = flattenedItems {
+            return posts.count
         }
         return 0
     }
@@ -92,18 +86,15 @@ class CommentsController: UITableViewController {
     func configureCell(cell: CommentCell, indexPath: NSIndexPath) {
         let idx = indexPath.row
         
-        if let html = flattenedItems?[idx].renderedText {
-            cell.commentLabel.attributedText = html
-        } else if let item = flattenedItems?[idx] {
-            if let text = item.post.text {
-                let html = renderedHTML(text)
+        if var post = flattenedItems?[idx] {
+            if !post.text.isEmpty && post.renderedHTML.length == 0 {
+                post.renderedHTML = renderedHTML(post.text)
                 
-                cell.commentLabel.attributedText = html
-                
-                flattenedItems?[idx] = (item.post, item.tier, html)
+                // posts are structs and passed by value, have to reassign
+                flattenedItems?[idx] = post
             }
-        } else {
-            cell.commentLabel.text = ""
+            
+            cell.commentLabel.attributedText = post.renderedHTML
         }
     }
     
