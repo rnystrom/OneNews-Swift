@@ -40,13 +40,10 @@ class HackerNewsController: UITableViewController {
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator!) {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
         
-        // required to re-layout cells
         tableView.reloadData()
-        
-//        coordinator.animateAlongsideTransition(nil, completion: { context in
-//            self.tableView.reloadData()
-//        })
     }
+
+    // MARK: Custom Actionss
     
     func onRefresh(sender: AnyObject!) {
         DataStore.sharedStore.fetchHackerNewsFrontPage {
@@ -55,9 +52,21 @@ class HackerNewsController: UITableViewController {
         }
     }
     
+    func onCustomAccessoryTapped(sender: UIButton) {
+        let indexPath = NSIndexPath(forRow: sender.tag, inSection: 0)
+        let item = itemForIndexPath(indexPath)
+        
+        let comments = storyboard.instantiateViewControllerWithIdentifier("Comments") as CommentsController
+        comments.item = item
+        
+        showDetailViewController(comments, sender: self)
+    }
+    
     func itemForIndexPath(indexPath: NSIndexPath) -> Post {
         return DataStore.sharedStore.hackerNewsItems![indexPath.row]
     }
+    
+    // MARK: UITableViewDataSource
     
     override func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
         return 1
@@ -83,7 +92,7 @@ class HackerNewsController: UITableViewController {
         cell.titleLabel.text = item.title
         cell.authorLabel.text = item.author
         
-        // hacky hack hack
+        // ryan hacks code, and i dont care
         cell.commentButton.tag = indexPath.row
         cell.commentButton.addTarget(self, action: Selector("onCustomAccessoryTapped:"), forControlEvents: .TouchUpInside)
         
@@ -93,15 +102,7 @@ class HackerNewsController: UITableViewController {
         cell.commentsLabel.text = "\(item.totalComments)"
     }
     
-    func onCustomAccessoryTapped(sender: UIButton) {
-        let indexPath = NSIndexPath(forRow: sender.tag, inSection: 0)
-        let item = itemForIndexPath(indexPath)
-        
-        let comments = storyboard.instantiateViewControllerWithIdentifier("Comments") as CommentsController
-        comments.item = item
-        
-        showDetailViewController(comments, sender: self)
-    }
+    // MARK: UITableViewDelegate
     
     override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
         let item = itemForIndexPath(indexPath)

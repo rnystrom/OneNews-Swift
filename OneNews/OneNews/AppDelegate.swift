@@ -19,11 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let sharedCache = NSURLCache(memoryCapacity: cacheSizeMemory, diskCapacity: cacheSizeDisk, diskPath: "nsurlcache")
         NSURLCache.setSharedURLCache(sharedCache)
         
+        window?.backgroundColor = UIColor.whiteColor()
+        
         return true
     }
     
     func applicationDidReceiveMemoryWarning(application: UIApplication) {
-        println("clearing shared cache")
         NSURLCache.sharedURLCache().removeAllCachedResponses()
     }
 

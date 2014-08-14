@@ -164,6 +164,7 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="580" translatesAutoresizingMaskIntoConstraints="NO" id="e8r-fJ-cLA" userLabel="Comment">
                                             <rect key="frame" x="10" y="10" width="580" height="23.5"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -178,6 +179,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="commentLabel" destination="e8r-fJ-cLA" id="sz9-eQ-gCx"/>
+                                    <outlet property="commentLeadingConstraint" destination="ncV-KV-GTj" id="iVv-el-va6"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

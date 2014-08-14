@@ -18,7 +18,8 @@ class CommentsController: UITableViewController {
         }
     }
     
-    var flattenedItems: [Post]?
+    var flattenedItems = [Post]()
+    var collapsedCellIndices = [Int]()
     
     func flattenAllItems() {
         if let post = item {
@@ -44,6 +45,58 @@ class CommentsController: UITableViewController {
         return posts
     }
     
+    func togglePostOpenAtIndex(idx: Int) {
+        if contains(collapsedCellIndices, idx) {
+            openPostAtIndex(idx)
+        } else {
+            collapsePostAtIndex(idx)
+        }
+    }
+    
+    func collapsePostAtIndex(idx: Int) {
+        let post = flattenedItems[idx]
+        let tier = post.tier
+        
+        collapsedCellIndices.append(idx)
+        
+        for i in (idx+1)..<flattenedItems.count {
+            let child = flattenedItems[i]
+            
+            if child.tier > tier {
+                collapsedCellIndices.append(i)
+            } else {
+                break
+            }
+        }
+
+        tableView.reloadData()
+//        tableView.beginUpdates()
+//        tableView.endUpdates()
+    }
+    
+    func openPostAtIndex(idx: Int) {
+        let post = flattenedItems[idx]
+        let tier = post.tier
+        
+        for i in 0..<collapsedCellIndices.count {
+            let cellIdx = collapsedCellIndices[i]
+            
+            if cellIdx >= idx {
+                let child = flattenedItems[cellIdx]
+                
+                if child.tier > tier {
+                    collapsedCellIndices.removeAtIndex(i)
+                } else {
+                    break
+                }
+            }
+        }
+
+        tableView.reloadData()
+//        tableView.beginUpdates()
+//        tableView.endUpdates()
+    }
+    
     // MARK: UITableViewDataSource
     
     override func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
@@ -51,26 +104,31 @@ class CommentsController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-        if let posts = flattenedItems {
-            return posts.count
-        }
-        return 0
+        return flattenedItems.count
     }
     
     override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
         let cell = tableView.dequeueReusableCellWithIdentifier(CommentsCellIdentifier, forIndexPath: indexPath) as CommentCell
         
-        configureCell(cell, indexPath: indexPath)
+        if contains(collapsedCellIndices, indexPath.row) {
+            cell.commentLabel.text = ""
+        } else {
+            configureCell(cell, indexPath: indexPath)
+        }
         
         return cell
     }
     
     func configureCell(cell: CommentCell, indexPath: NSIndexPath) {
-        let idx = indexPath.row
-        
-        if var post = flattenedItems?[idx] {
-            cell.commentLabel.setMarkup(post.text)
-        }
+        let post = flattenedItems[indexPath.row]
+        cell.commentLabel.setMarkup(post.text)
+        cell.setCommentTier(post.tier)
+    }
+    
+    // MARK: UITableViewDelegate
+    
+    override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+        togglePostOpenAtIndex(indexPath.row)
     }
     
 }

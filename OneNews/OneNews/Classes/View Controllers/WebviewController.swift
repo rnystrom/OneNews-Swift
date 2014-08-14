@@ -10,6 +10,7 @@ import UIKit
 
 class WebviewController: UIViewController, UIWebViewDelegate {
     
+    // optional b/c VC is loaded from storyboard so we can't use custom init
     var item: Post?
     var activity = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     
@@ -40,11 +41,10 @@ class WebviewController: UIViewController, UIWebViewDelegate {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        println("memory warning, reloading webview")
         webView.reload()
     }
     
-    // MARK: Actions
+    // MARK: Custom Actions
 
     @IBAction func onBack(sender: AnyObject) {
         webView.goBack()
@@ -56,6 +56,10 @@ class WebviewController: UIViewController, UIWebViewDelegate {
     
     @IBAction func onRefresh(sender: AnyObject) {
         webView.reload()
+    }
+    
+    @IBAction func onShare(sender: AnyObject) {
+        // TODO: share sheet
     }
     
     // MARK: UIWebViewDelegate
@@ -81,10 +85,6 @@ class WebviewController: UIViewController, UIWebViewDelegate {
         let refresh = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: Selector("onRefresh:"))
         // replaces activity indicator setup in webViewDidStartLoad:
         toolbar.items[toolbar.items.count-1] = refresh
-    }
-    
-    @IBAction func onShare(sender: AnyObject) {
-        // TODO: share sheet
     }
     
 }

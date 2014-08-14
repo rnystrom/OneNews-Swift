@@ -21,8 +21,6 @@ class HackerNewsCell: UITableViewCell {
         
         titleLabel.preferredMaxLayoutWidth = CGRectGetWidth(titleLabel.frame)
         authorLabel.preferredMaxLayoutWidth = CGRectGetWidth(authorLabel.frame)
-        
-        super.layoutSubviews()
     }
     
 }
