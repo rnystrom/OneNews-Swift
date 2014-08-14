@@ -20,6 +20,12 @@
 		29B9AF4A19982376006928F8 /* rss.json in Resources */ = {isa = PBXBuildFile; fileRef = 29B9AF4919982376006928F8 /* rss.json */; };
 		29B9AF4C199827C1006928F8 /* HackerNewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B9AF4B199827C1006928F8 /* HackerNewsCell.swift */; };
 		29B9AF5C1999CC82006928F8 /* CommentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B9AF5B1999CC82006928F8 /* CommentsController.swift */; };
+		29D43F9A199D095C00F8269F /* CColorConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D43F8F199D095C00F8269F /* CColorConverter.m */; };
+		29D43F9B199D095C00F8269F /* CMarkupTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D43F91199D095C00F8269F /* CMarkupTransformer.m */; };
+		29D43F9C199D095C00F8269F /* CSimpleMarkupParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D43F93199D095C00F8269F /* CSimpleMarkupParser.m */; };
+		29D43F9D199D095C00F8269F /* NSString+MarkupExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D43F95199D095C00F8269F /* NSString+MarkupExtensions.m */; };
+		29D43F9E199D095C00F8269F /* UIFont+StyleUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D43F97199D095C00F8269F /* UIFont+StyleUtilities.m */; };
+		29D43F9F199D095C00F8269F /* UILabel+MarkupExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D43F99199D095C00F8269F /* UILabel+MarkupExtensions.m */; };
 		29F8561D1996E789008CF51A /* JSONRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F8561C1996E789008CF51A /* JSONRequest.swift */; };
 		29F8561F1996E7C2008CF51A /* HackerNewsServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F8561E1996E7C2008CF51A /* HackerNewsServices.swift */; };
 		29F856211996E8FD008CF51A /* HackerNewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F856201996E8FD008CF51A /* HackerNewsController.swift */; };
@@ -55,6 +61,19 @@
 		29B9AF4919982376006928F8 /* rss.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rss.json; sourceTree = "<group>"; };
 		29B9AF4B199827C1006928F8 /* HackerNewsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HackerNewsCell.swift; path = "OneNews/Classes/Reusable Views/HackerNewsCell.swift"; sourceTree = "<group>"; };
 		29B9AF5B1999CC82006928F8 /* CommentsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentsController.swift; path = "OneNews/Classes/View Controllers/CommentsController.swift"; sourceTree = "<group>"; };
+		29D43F8E199D095C00F8269F /* CColorConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CColorConverter.h; sourceTree = "<group>"; };
+		29D43F8F199D095C00F8269F /* CColorConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CColorConverter.m; sourceTree = "<group>"; };
+		29D43F90199D095C00F8269F /* CMarkupTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMarkupTransformer.h; sourceTree = "<group>"; };
+		29D43F91199D095C00F8269F /* CMarkupTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMarkupTransformer.m; sourceTree = "<group>"; };
+		29D43F92199D095C00F8269F /* CSimpleMarkupParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSimpleMarkupParser.h; sourceTree = "<group>"; };
+		29D43F93199D095C00F8269F /* CSimpleMarkupParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSimpleMarkupParser.m; sourceTree = "<group>"; };
+		29D43F94199D095C00F8269F /* NSString+MarkupExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MarkupExtensions.h"; sourceTree = "<group>"; };
+		29D43F95199D095C00F8269F /* NSString+MarkupExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MarkupExtensions.m"; sourceTree = "<group>"; };
+		29D43F96199D095C00F8269F /* UIFont+StyleUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+StyleUtilities.h"; sourceTree = "<group>"; };
+		29D43F97199D095C00F8269F /* UIFont+StyleUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+StyleUtilities.m"; sourceTree = "<group>"; };
+		29D43F98199D095C00F8269F /* UILabel+MarkupExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+MarkupExtensions.h"; sourceTree = "<group>"; };
+		29D43F99199D095C00F8269F /* UILabel+MarkupExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+MarkupExtensions.m"; sourceTree = "<group>"; };
+		29D43FA1199D099E00F8269F /* OneNews-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OneNews-Bridging-Header.h"; sourceTree = "<group>"; };
 		29F8561C1996E789008CF51A /* JSONRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONRequest.swift; path = OneNews/Classes/Abstract/JSONRequest.swift; sourceTree = "<group>"; };
 		29F8561E1996E7C2008CF51A /* HackerNewsServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HackerNewsServices.swift; path = OneNews/Classes/Services/HackerNewsServices.swift; sourceTree = "<group>"; };
 		29F856201996E8FD008CF51A /* HackerNewsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HackerNewsController.swift; path = "OneNews/Classes/View Controllers/HackerNewsController.swift"; sourceTree = "<group>"; };
@@ -115,6 +134,7 @@
 			children = (
 				29B6D4151995552300A09D6F /* Info.plist */,
 				29B6D4401996B38E00A09D6F /* MyPlayground.playground */,
+				29D43FA1199D099E00F8269F /* OneNews-Bridging-Header.h */,
 			);
 			name = "Other Sources";
 			path = OneNews;
@@ -200,6 +220,7 @@
 		29B6D44A1996CC4B00A09D6F /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				29D43F8D199D095C00F8269F /* MarkupLabel */,
 				29B6D44B1996CC4B00A09D6F /* SwiftyJSON.swift */,
 			);
 			name = Vendor;
@@ -213,6 +234,25 @@
 			);
 			name = "Sample Data";
 			path = "../../Sample Data";
+			sourceTree = "<group>";
+		};
+		29D43F8D199D095C00F8269F /* MarkupLabel */ = {
+			isa = PBXGroup;
+			children = (
+				29D43F8E199D095C00F8269F /* CColorConverter.h */,
+				29D43F8F199D095C00F8269F /* CColorConverter.m */,
+				29D43F90199D095C00F8269F /* CMarkupTransformer.h */,
+				29D43F91199D095C00F8269F /* CMarkupTransformer.m */,
+				29D43F92199D095C00F8269F /* CSimpleMarkupParser.h */,
+				29D43F93199D095C00F8269F /* CSimpleMarkupParser.m */,
+				29D43F94199D095C00F8269F /* NSString+MarkupExtensions.h */,
+				29D43F95199D095C00F8269F /* NSString+MarkupExtensions.m */,
+				29D43F96199D095C00F8269F /* UIFont+StyleUtilities.h */,
+				29D43F97199D095C00F8269F /* UIFont+StyleUtilities.m */,
+				29D43F98199D095C00F8269F /* UILabel+MarkupExtensions.h */,
+				29D43F99199D095C00F8269F /* UILabel+MarkupExtensions.m */,
+			);
+			path = MarkupLabel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,7 +355,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29D43F9F199D095C00F8269F /* UILabel+MarkupExtensions.m in Sources */,
 				29FACBC3199AB4BB0065B1C9 /* CommentCell.swift in Sources */,
+				29D43F9D199D095C00F8269F /* NSString+MarkupExtensions.m in Sources */,
 				29B6D4461996CABE00A09D6F /* DataStore.swift in Sources */,
 				29B6D4441996BC4100A09D6F /* GCD.swift in Sources */,
 				29B9AF4C199827C1006928F8 /* HackerNewsCell.swift in Sources */,
@@ -323,8 +365,12 @@
 				29B6D43B19957CCD00A09D6F /* ONSplitViewController.swift in Sources */,
 				29B9AF5C1999CC82006928F8 /* CommentsController.swift in Sources */,
 				29B6D43F1996864400A09D6F /* Post.swift in Sources */,
+				29D43F9E199D095C00F8269F /* UIFont+StyleUtilities.m in Sources */,
 				29F856211996E8FD008CF51A /* HackerNewsController.swift in Sources */,
+				29D43F9B199D095C00F8269F /* CMarkupTransformer.m in Sources */,
+				29D43F9C199D095C00F8269F /* CSimpleMarkupParser.m in Sources */,
 				29B6D43D19967B9500A09D6F /* WebviewController.swift in Sources */,
+				29D43F9A199D095C00F8269F /* CColorConverter.m in Sources */,
 				29B6D44C1996CC4B00A09D6F /* SwiftyJSON.swift in Sources */,
 				29F8561F1996E7C2008CF51A /* HackerNewsServices.swift in Sources */,
 				29B6D4171995552300A09D6F /* AppDelegate.swift in Sources */,
@@ -449,6 +495,7 @@
 				INFOPLIST_FILE = OneNews/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "OneNews/OneNews-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -460,6 +507,7 @@
 				INFOPLIST_FILE = OneNews/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "OneNews/OneNews-Bridging-Header.h";
 			};
 			name = Release;
 		};

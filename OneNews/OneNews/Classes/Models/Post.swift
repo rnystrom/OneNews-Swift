@@ -20,7 +20,7 @@ struct Post {
     let text: String = ""
     
     // computed values
-    var comments = Array<Post>()
+    var comments = [Post]()
     var totalComments = 0
     let tier = 0
     
@@ -55,7 +55,7 @@ struct Post {
 typealias HackerNewsDecodeTuple = (post: Post, commentCount: Int)
 
 // return tuple is for summing the comment count
-func decodeHackerNews(json: JSONValue, tier: Int) -> HackerNewsDecodeTuple {
+func decodeHackerNews(json: JSONValue, #tier: Int) -> HackerNewsDecodeTuple {
     let author = json["author"]
     let createdAt = json["created_at_i"]
     let hnID = json["id"]
@@ -83,7 +83,7 @@ func decodeHackerNews(json: JSONValue, tier: Int) -> HackerNewsDecodeTuple {
     if let childJSON = json["children"].array {
         
         let children = childJSON.map { (var obj) -> Post in
-            let tuple = decodeHackerNews(obj, tier + 1)
+            let tuple = decodeHackerNews(obj, tier: tier + 1)
             commentCount += tuple.commentCount + 1
             return tuple.post
         }

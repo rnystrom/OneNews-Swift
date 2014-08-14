@@ -23,7 +23,7 @@ class CommentsController: UITableViewController {
     func flattenAllItems() {
         if let post = item {
             dispatch_background {
-                let children = self.flattenChildren(post)
+                let children = self.flattenComments(post)
                 
                 dispatch_main {
                     self.flattenedItems = children
@@ -33,33 +33,15 @@ class CommentsController: UITableViewController {
         }
     }
     
-    func flattenChildren(post: Post) -> [Post] {
-        var html: NSAttributedString? = nil
-        
+    func flattenComments(post: Post) -> [Post] {
         var posts = [post]
 
         for comment in post.comments {
-            let comments = flattenChildren(comment)
+            let comments = flattenComments(comment)
             posts += comments
         }
         
         return posts
-    }
-    
-    // https://github.com/thecodepath/ios_guides/wiki/Generating-NSAttributedString-from-HTML
-    func renderedHTML(text: String) -> NSAttributedString {
-        let styledText = "<span style=\"font-family: Helvetica Neue; font-size: 17px\">\(text)</span>"
-        
-        let data = styledText.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
-        
-        let options = [
-            NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
-            NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding
-        ]
-        
-        let html = NSAttributedString(data: data, options: options, documentAttributes: nil, error: nil)
-        
-        return html
     }
     
     // MARK: UITableViewDataSource
@@ -87,14 +69,7 @@ class CommentsController: UITableViewController {
         let idx = indexPath.row
         
         if var post = flattenedItems?[idx] {
-            if !post.text.isEmpty && post.renderedHTML.length == 0 {
-                post.renderedHTML = renderedHTML(post.text)
-                
-                // posts are structs and passed by value, have to reassign
-                flattenedItems?[idx] = post
-            }
-            
-            cell.commentLabel.attributedText = post.renderedHTML
+            cell.commentLabel.setMarkup(post.text)
         }
     }
     
