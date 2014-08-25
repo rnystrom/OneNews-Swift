@@ -8,89 +8,84 @@
 
 import Foundation
 
-struct Post {
+struct Post: Equatable {
     
     // values from the API
-    let author: String = ""
+    let author: String
     let createdAt: NSDate
-    let hnID: Int = 0
+    let apiID: Int
     let points: Int = 0
-    let title: String = ""
+    let title: String?
     let url: String?
-    let text: String = ""
+    let text: String?
     
-    // computed values
-    var comments = [Post]()
-    var totalComments = 0
-    let tier = 0
+    // post/comment tree values
+    let comments: [Post]
+    let totalComments: Int
+    let tier: Int
     
-    // determines if parent node
-    var head = false
-    
-    // cache HTML -> NSAttributedString
-    var renderedHTML: NSAttributedString = NSAttributedString(string: "")
-    
-    init(author: String?, createdAt: NSDate, hnID: Int?, points: Int?, title: String?, url: String?, text: String?, tier: Int = 0) {
-        if let a = author {
-            self.author = a
-        }
-        
-        if let t = title {
-            self.title = t
-        }
-        
-        if let t = text {
-            self.text = t
-        }
-        
-        self.createdAt = createdAt
-        self.hnID = hnID != nil ? hnID! : 0
-        self.points = points != nil ? points! : 0
-        self.url = url
-        self.tier = tier
-    }
-
 }
 
-typealias HackerNewsDecodeTuple = (post: Post, commentCount: Int)
+func == (lhs: Post, rhs: Post) -> Bool {
+    return lhs.apiID == rhs.apiID
+}
 
-// return tuple is for summing the comment count
-func decodeHackerNews(json: JSONValue, #tier: Int) -> HackerNewsDecodeTuple {
+enum PostResult {
+    case Some(Post)
+    case None
+}
+
+func decodeHackerNews(json: JSONValue, tier: Int) -> PostResult {
+    var children = [Post]()
+    var commentCount = 0
+    
+    if let childrenJSON = json["children"].array {
+        
+        // builds comment tree recursively
+        for childJSON in childrenJSON {
+            switch decodeHackerNews(childJSON, tier + 1) {
+            case let .Some(post):
+                children.append(post)
+                commentCount += post.totalComments + 1
+            default: ()
+            }
+        }
+        
+    }
+    
     let author = json["author"]
     let createdAt = json["created_at_i"]
-    let hnID = json["id"]
+    let apiID = json["id"]
     let points = json["points"]
     let text = json["text"]
     let title = json["title"]
     let type = json["type"]
     let url = json["url"]
     
-    let date = createdAt ? NSDate(timeIntervalSince1970: createdAt.double!) : NSDate()
-    
-    var post = Post(
-        author: author.string,
-        createdAt: date,
-        hnID: hnID.integer,
-        points: points.integer,
-        title: title.string,
-        url: url.string,
-        text: text.string,
-        tier: tier
-    )
-    
-    var commentCount = 0
-    
-    if let childJSON = json["children"].array {
+    // http://natashatherobot.com/swift-unwrap-multiple-optionals/
+    // required properties
+    // author: String
+    // createdAt: NSDate
+    // apiID: Int
+    switch (author.string, createdAt.double, apiID.integer) {
+    case let(.Some(author), .Some(createdAt), .Some(apiID)):
+        let date = NSDate(timeIntervalSince1970: createdAt)
+        let p = points.integer ?? 0 // points can be optional
         
-        let children = childJSON.map { (var obj) -> Post in
-            let tuple = decodeHackerNews(obj, tier: tier + 1)
-            commentCount += tuple.commentCount + 1
-            return tuple.post
-        }
-        
-        post.comments = children
-        post.totalComments = commentCount
+        let post = Post(
+            author: author,
+            createdAt: date,
+            apiID: apiID,
+            points: p,
+            title: title.string,
+            url: url.string,
+            text: text.string,
+            comments: children,
+            totalComments: commentCount,
+            tier: tier
+        )
+        return .Some(post)
+    default:
+        return .None
     }
-    
-    return (post, commentCount)
 }

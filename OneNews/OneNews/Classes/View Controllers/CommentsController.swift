@@ -84,7 +84,7 @@ class CommentsController: UITableViewController {
             if cellIdx >= idx {
                 let child = flattenedItems[cellIdx]
                 
-                if child.tier > tier {
+                if child == post || child.tier > tier {
                     collapsedCellIndices.removeAtIndex(i)
                 } else {
                     break
@@ -110,6 +110,7 @@ class CommentsController: UITableViewController {
     override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
         let cell = tableView.dequeueReusableCellWithIdentifier(CommentsCellIdentifier, forIndexPath: indexPath) as CommentCell
         
+        // TODO: move this into cell height changes eventually
         if contains(collapsedCellIndices, indexPath.row) {
             cell.commentLabel.text = ""
         } else {
@@ -121,8 +122,13 @@ class CommentsController: UITableViewController {
     
     func configureCell(cell: CommentCell, indexPath: NSIndexPath) {
         let post = flattenedItems[indexPath.row]
-        cell.commentLabel.setMarkup(post.text)
+
         cell.setCommentTier(post.tier)
+        
+        if let text = post.text {
+            println(post.apiID)
+            cell.commentLabel.setMarkup(text)
+        }
     }
     
     // MARK: UITableViewDelegate

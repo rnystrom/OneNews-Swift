@@ -171,10 +171,10 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="e8r-fJ-cLA" secondAttribute="bottom" constant="10" id="Ohw-AE-96N"/>
-                                        <constraint firstItem="e8r-fJ-cLA" firstAttribute="top" secondItem="szO-yM-GFC" secondAttribute="top" constant="10" id="mZ2-8c-x7W"/>
-                                        <constraint firstItem="e8r-fJ-cLA" firstAttribute="leading" secondItem="szO-yM-GFC" secondAttribute="leading" constant="10" id="ncV-KV-GTj"/>
-                                        <constraint firstAttribute="trailing" secondItem="e8r-fJ-cLA" secondAttribute="trailing" constant="10" id="olV-Zv-nBl"/>
+                                        <constraint firstAttribute="bottom" secondItem="e8r-fJ-cLA" secondAttribute="bottom" priority="999" constant="10" id="Ohw-AE-96N"/>
+                                        <constraint firstItem="e8r-fJ-cLA" firstAttribute="top" secondItem="szO-yM-GFC" secondAttribute="top" priority="999" constant="10" id="mZ2-8c-x7W"/>
+                                        <constraint firstItem="e8r-fJ-cLA" firstAttribute="leading" secondItem="szO-yM-GFC" secondAttribute="leading" priority="999" constant="10" id="ncV-KV-GTj"/>
+                                        <constraint firstAttribute="trailing" secondItem="e8r-fJ-cLA" secondAttribute="trailing" priority="999" constant="10" id="olV-Zv-nBl"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

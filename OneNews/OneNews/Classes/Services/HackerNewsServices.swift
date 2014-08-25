@@ -10,7 +10,7 @@ import Foundation
 
 struct HackerNewsClient {
     
-    private let OFFLINE_DEBUG = false
+    private let OFFLINE_DEBUG = true
     
     func fetchFrontPage(callback: ([Post]?, NSError?) -> Void) {
         let handler: (JSONValue?, NSError?) -> Void = { json, error in
@@ -22,7 +22,15 @@ struct HackerNewsClient {
             var items = [Post]()
             
             if let jsonItems = json?.array {
-                items = jsonItems.map { decodeHackerNews($0, tier: 0).post }
+                
+                for json in jsonItems {
+                    switch decodeHackerNews(json, 0) {
+                    case let .Some(post):
+                        items.append(post)
+                    default: ()
+                    }
+                }
+                
             }
             
             callback(items, nil)
@@ -30,10 +38,11 @@ struct HackerNewsClient {
         
         if OFFLINE_DEBUG {
             // test data
-            let path = NSBundle.mainBundle().pathForResource("rss", ofType: "json")
-            let data = NSData(contentsOfFile: path)
-            let json = JSONValue(data)
-            handler(json, nil)
+            if let path = NSBundle.mainBundle().pathForResource("rss", ofType: "json") {
+                let data = NSData(contentsOfFile: path)
+                let json = JSONValue(data)
+                handler(json, nil)
+            }
         } else {
             // production
             fetchJSON("https://hn.algolia.com/rss.json", handler)

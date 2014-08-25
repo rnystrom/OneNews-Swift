@@ -8,7 +8,9 @@
 
 import Foundation
 
-func fetchJSON(url: String, callback: (JSONValue?, NSError?) -> Void) {
+typealias FetchJSONCallback = (JSONValue?, NSError?) -> Void
+
+func fetchJSON(url: String, callback: FetchJSONCallback) {
     let request = NSURLRequest(URL: NSURL(string: url))
     let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
         if let err = error {
